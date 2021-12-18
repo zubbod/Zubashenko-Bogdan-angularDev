@@ -1,0 +1,29 @@
+:host {
+  display: flex;
+  width: 100%;
+  background-color: rgb(176, 218, 247);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 16px 24px;
+}
+
+.logo {
+  &__image {
+    width: 36px;
+  }
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+
+  &__item {
+    & + & {
+      margin-left: 36px;
+    }
+  }
+}

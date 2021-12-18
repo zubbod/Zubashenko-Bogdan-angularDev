@@ -1,0 +1,11 @@
+:host {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  width: 100%;
+
+  .container {
+    width: 960px;
+    background-color: #eee;
+  }
+}
