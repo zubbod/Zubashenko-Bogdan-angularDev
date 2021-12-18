@@ -4,12 +4,13 @@
          class="logo__image"
          [src]="logoUrl"
          alt="weather logo image">
+    <span class="logo__text">weather</span>
   </div>
   <nav class="nav">
     <app-button [routerLink]="['/home']"
                 routerLinkActive="active"
                 class="nav__item">Home</app-button>
-    <app-button [routerLink]="['/favorite']"
+    <app-button [routerLink]="['/favorites']"
                 routerLinkActive="active"
                 class="nav__item">Favorite</app-button>
   </nav>

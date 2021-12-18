@@ -14,9 +14,15 @@
 }
 
 .logo {
+  display: flex;
+  align-items: center;
   cursor: pointer;
   &__image {
     width: 36px;
+  }
+  &__text {
+    margin-left: 12px;
+    text-transform: uppercase;
   }
 }
 
@@ -27,6 +33,11 @@
   &__item {
     & + & {
       margin-left: 36px;
+    }
+
+    &.active {
+      color: lighten($dark, 10);
+      background-color: darken($light, 4);
     }
   }
 }
