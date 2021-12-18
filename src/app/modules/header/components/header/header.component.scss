@@ -1,7 +1,9 @@
+@use 'variables' as *;
+
 :host {
   display: flex;
   width: 100%;
-  background-color: rgb(176, 218, 247);
+  background-color: $light;
 }
 
 .header {
@@ -12,6 +14,7 @@
 }
 
 .logo {
+  cursor: pointer;
   &__image {
     width: 36px;
   }

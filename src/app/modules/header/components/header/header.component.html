@@ -1,13 +1,16 @@
 <header class="header">
   <div class="logo">
-    <img class="logo__image"
+    <img [routerLink]="['/home']"
+         class="logo__image"
          [src]="logoUrl"
          alt="weather logo image">
   </div>
-  <!-- <nav> -->
-  <ul class="nav">
-    <li class="nav__item">Home</li>
-    <li class="nav__item">Favorite</li>
-  </ul>
-  <!-- </nav> -->
+  <nav class="nav">
+    <app-button [routerLink]="['/home']"
+                routerLinkActive="active"
+                class="nav__item">Home</app-button>
+    <app-button [routerLink]="['/favorite']"
+                routerLinkActive="active"
+                class="nav__item">Favorite</app-button>
+  </nav>
 </header>

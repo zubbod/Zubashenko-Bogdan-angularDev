@@ -1,9 +1,9 @@
-@use './../theme/custom-theme.scss';
+@use 'theme' as theme;
 
-$main: $gray-main;
-$light: $gray-light;
-$dark: $gray-dark;
+$main: theme.$gray-main;
+$light: theme.$gray-light;
+$dark: theme.$gray-dark;
 
-$main-red: $red-main;
-$light-red: $red-light;
-$dark-red: $red-dark;
+$main-red: theme.$red-main;
+$light-red: theme.$red-light;
+$dark-red: theme.$red-dark;
