@@ -1,17 +1,17 @@
 <header class="header">
-  <div class="logo">
-    <img [routerLink]="['/home']"
-         class="logo__image"
+  <div class="logo"
+       [routerLink]="['/home']">
+    <img class="logo__image"
          [src]="logoUrl"
          alt="weather logo image">
     <span class="logo__text">weather</span>
   </div>
   <nav class="nav">
-    <app-button [routerLink]="['/home']"
-                routerLinkActive="active"
-                class="nav__item">Home</app-button>
-    <app-button [routerLink]="['/favorites']"
-                routerLinkActive="active"
-                class="nav__item">Favorite</app-button>
+    <app-button class="nav__item"
+                [routerLink]="['/home']"
+                routerLinkActive="active">Home</app-button>
+    <app-button class="nav__item"
+                [routerLink]="['/favorites']"
+                routerLinkActive="active">Favorite</app-button>
   </nav>
 </header>
