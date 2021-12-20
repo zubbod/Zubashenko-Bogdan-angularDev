@@ -1,0 +1,9 @@
+@use 'theme' as theme;
+
+$main: theme.$gray-main;
+$light: theme.$gray-light;
+$dark: theme.$gray-dark;
+
+$main-red: theme.$red-main;
+$light-red: theme.$red-light;
+$dark-red: theme.$red-dark;
