@@ -2,12 +2,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { Observable } from 'rxjs';
-import {
-  debounceTime,
-  distinctUntilChanged,
-  filter,
-  switchMap,
-} from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, filter, switchMap } from 'rxjs/operators';
 import { City } from 'src/app/core/interfaces/city';
 import { CityService } from 'src/app/services/city.service';
 
@@ -27,7 +22,7 @@ export class SearchComponent {
     this.cities = (this.searchControl.valueChanges as Observable<string>).pipe(
       filter(query => query.length >= this.minQueryLength),
       distinctUntilChanged(),
-      debounceTime(100),
+      debounceTime(200),
       switchMap(query => this.cityService.suggestCity(query)),
     );
   }

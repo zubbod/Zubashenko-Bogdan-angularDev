@@ -10,8 +10,8 @@ import { WEATHER_API_URL } from '../core/tokens/weather-api-url';
 
 @Injectable()
 export class GeopositionSearchService {
-  // private requestUrl = `${this.apiUrl}locations/v1/cities/geoposition/search`;
-  private requestUrl = `/assets/mock/geoposition-search.json`;
+  private requestUrl = `${this.apiUrl}locations/v1/cities/geoposition/search`;
+  // private requestUrl = `/assets/mock/geoposition-search.json`;
   constructor(
     private httpClient: HttpClient,
     @Inject(WEATHER_API_KEY) private apiKey: string,

@@ -3,15 +3,15 @@
 :host {
   display: flex;
   justify-content: space-between;
-  margin: 24px 0;
+  margin: 24px 0 12px 0;
   padding: 24px 32px;
   border-radius: 4px;
-  background-color: map-get(theme.$w-front-accent, 200);
+  background-color: map-get(theme.$w-front-accent, 100);
 }
 
 .city {
   display: flex;
-  flex-basis: 33%;
+  flex-basis: 25%;
 
   &__icon {
     width: 54px;
@@ -24,7 +24,7 @@
 
 .weather {
   display: flex;
-  flex-basis: 33%;
+  flex-basis: 50%;
   flex-flow: column;
   align-items: center;
   margin-left: 24px;
@@ -39,5 +39,5 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  flex-basis: 33%;
+  flex-basis: 25%;
 }

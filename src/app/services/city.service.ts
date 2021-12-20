@@ -9,8 +9,8 @@ import { WEATHER_API_URL } from '../core/tokens/weather-api-url';
 
 @Injectable()
 export class CityService {
-  // private requestUrl = `${this.apiUrl}locations/v1/cities/autocomplete`;
-  private requestUrl = `/assets/mock/city-autocomplete.json`;
+  private requestUrl = `${this.apiUrl}locations/v1/cities/autocomplete`;
+  // private requestUrl = `/assets/mock/city-autocomplete.json`;
   constructor(
     private httpClient: HttpClient,
     @Inject(WEATHER_API_KEY) private apiKey: string,

@@ -34,7 +34,7 @@ export class HomeComponent implements OnInit {
 
   public selectCity(city: CityModel) {
     this.currentCity = of(city);
-    this.currentWeather = this.weatherService.getCurrentCityWeather(city.key);
+    this.getWeatherByCityKey(city.key);
   }
 
   private async getCurrentWeather(): Promise<void> {
@@ -50,9 +50,13 @@ export class HomeComponent implements OnInit {
   private getCurrentWeatherByLonLat(coords: GeolocationModel): void {
     this.currentCity = this.geopositionSearchService.getCity(coords).pipe(
       tap(res => {
-        this.currentWeather = this.weatherService.getCurrentCityWeather(res.key);
-        this.currentForecast = this.weatherService.getWeatherForecast(res.key);
+        this.getWeatherByCityKey(res.key);
       }),
     );
+  }
+
+  private getWeatherByCityKey(cityKey: string): void {
+    this.currentWeather = this.weatherService.getCurrentCityWeather(cityKey);
+    this.currentForecast = this.weatherService.getWeatherForecast(cityKey);
   }
 }
