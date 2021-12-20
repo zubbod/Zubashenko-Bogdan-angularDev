@@ -1,0 +1,7 @@
+<div class="date">{{ forecast.date | date: 'EEEE, d' }}</div>
+<div class="temperature">
+  {{ forecast.temperature.minimum.value }}/{{ forecast.temperature.maximum.value }}
+  &nbsp;{{ forecast.temperature.minimum.unit }}&deg;
+</div>
+<div class="text">Day: {{ forecast.day.iconPhrase }}</div>
+<div class="text">Night: {{ forecast.night.iconPhrase }}</div>

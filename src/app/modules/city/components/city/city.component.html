@@ -11,7 +11,8 @@
 </ng-container>
 <ng-container *ngIf="weather | async as currentWeather">
   <div class="weather">
-    <div class="weather__text">{{ currentWeather[0].temperature.metric.value }} {{ currentWeather[0].weatherText }}
+    <div class="weather__text">{{ currentWeather[0].temperature.getByType(TemperatureType.Celsius).value }}
+      {{ currentWeather[0].weatherText }}
     </div>
     <div class="weather__item">{{ currentWeather[0].localObservationDateTime | date: 'EEEE, dd MMMM, h:mm a' }}
     </div>

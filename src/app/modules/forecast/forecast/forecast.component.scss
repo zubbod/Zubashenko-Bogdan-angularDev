@@ -1,0 +1,25 @@
+@use 'theme' as theme;
+
+:host {
+  display: flex;
+  flex-flow: column nowrap;
+  width: 150px;
+  padding: 12px;
+  border-radius: 4px;
+  background-color: map-get(theme.$w-front-accent, 200);
+}
+
+.date {
+  font-weight: 700;
+}
+
+.temperature {
+  display: flex;
+  justify-content: center;
+  font-size: 24px;
+  margin: 8px 0;
+}
+
+.text:not(:last-of-type) {
+  margin-bottom: 8px;
+}

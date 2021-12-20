@@ -4,9 +4,9 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { City } from '../core/interfaces/city';
 import { CityModel } from '../core/models/city.model';
+import { GeolocationModel } from '../core/models/geolocation-model';
 import { WEATHER_API_KEY } from '../core/tokens/weather-api-key';
 import { WEATHER_API_URL } from '../core/tokens/weather-api-url';
-import { Geolocation } from '../core/types/geolocation';
 
 @Injectable()
 export class GeopositionSearchService {
@@ -18,7 +18,7 @@ export class GeopositionSearchService {
     @Inject(WEATHER_API_URL) private apiUrl: string,
   ) {}
 
-  public getCity(coords: Geolocation): Observable<City> {
+  public getCity(coords: GeolocationModel): Observable<City> {
     return this.httpClient
       .get<City>(this.requestUrl, {
         params: {

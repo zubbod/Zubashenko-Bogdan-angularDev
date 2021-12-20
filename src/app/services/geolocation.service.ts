@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
+import { GeolocationModel } from '../core/models/geolocation-model';
 import { MessageService } from './message.service';
-import { Geolocation } from './../core/types/geolocation';
 
 @Injectable()
 export class GeolocationService {
@@ -11,7 +11,7 @@ export class GeolocationService {
 
   constructor(private messageService: MessageService) {}
 
-  public async getLonLat(): Promise<Geolocation> {
+  public async getLonLat(): Promise<GeolocationModel> {
     return this.initGeolocation()
       .then(geolocation => {
         return Boolean(geolocation.coords)
@@ -35,8 +35,8 @@ export class GeolocationService {
 
   private createLonLatFromGeolocationPosition(
     position?: GeolocationPosition,
-  ): Geolocation {
-    return new Geolocation(position ? position.coords : null);
+  ): GeolocationModel {
+    return new GeolocationModel(position ? position.coords : null);
   }
 
   private getCurrentLocation(): Promise<GeolocationPosition> {
