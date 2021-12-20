@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { CityModel } from 'src/app/core/models/city.model';
+import { WeatherModel } from 'src/app/core/models/weather.model';
 
 @Component({
   selector: 'app-current-weather',
@@ -7,7 +9,8 @@ import { Observable } from 'rxjs';
   styleUrls: ['./current-weather.component.scss'],
 })
 export class CurrentWeatherComponent implements OnInit {
-  @Input() public currentWeather: Observable<any>;
+  @Input() public currentWeather: Observable<WeatherModel[]>;
+  @Input() public currentCity: CityModel;
 
   constructor() {}
 

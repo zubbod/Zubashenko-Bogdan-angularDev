@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { City } from 'src/app/core/interfaces/city';
+import { CityModel } from 'src/app/core/models/city.model';
+import { WeatherModel } from 'src/app/core/models/weather.model';
 import { Geolocation } from 'src/app/core/types/geolocation';
 import { GeolocationService } from 'src/app/services/geolocation.service';
 import { GeopositionSearchService } from 'src/app/services/geoposition-search.service';
@@ -12,7 +13,8 @@ import { WeatherService } from 'src/app/services/weather.service';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  public currentWeather: Observable<any>;
+  public currentWeather: Observable<WeatherModel[]>;
+  public currentCity: CityModel;
   private lonLat: Geolocation | undefined = undefined;
 
   constructor(
@@ -25,11 +27,12 @@ export class HomeComponent implements OnInit {
     await this.getCurrentWeather();
   }
 
-  public selectCity(city: City) {
+  public selectCity(city: CityModel) {
+    this.currentCity = city;
     this.currentWeather = this.weatherService.getCurrentCityWeather(city.key);
   }
 
-  private async getCurrentWeather(): Promise<any> {
+  private async getCurrentWeather(): Promise<void> {
     this.lonLat = await this.geolocationService.getLonLat();
     if (this.lonLat && !this.lonLat.isEmpty()) {
       this.getCurrentWeatherByLonLat(this.lonLat);
@@ -39,9 +42,11 @@ export class HomeComponent implements OnInit {
   }
 
   private async getCurrentWeatherByLonLat(coords: Geolocation): Promise<void> {
-    const { key } = await this.geopositionSearchService
+    this.currentCity = await this.geopositionSearchService
       .getCity(coords)
       .toPromise();
-    this.currentWeather = this.weatherService.getCurrentCityWeather(key);
+    this.currentWeather = this.weatherService.getCurrentCityWeather(
+      this.currentCity.key,
+    );
   }
 }
