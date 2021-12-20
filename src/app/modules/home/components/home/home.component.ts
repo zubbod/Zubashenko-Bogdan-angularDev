@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { City } from 'src/app/core/interfaces/city';
 import { Geolocation } from 'src/app/core/types/geolocation';
 import { GeolocationService } from 'src/app/services/geolocation.service';
 
@@ -14,5 +15,9 @@ export class HomeComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     this.lonLat = await this.geolocation.getLonLat();
+  }
+
+  public selectCity(city: City) {
+    console.log(city);
   }
 }

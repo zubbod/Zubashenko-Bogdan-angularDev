@@ -8,7 +8,8 @@
            [formControl]="searchControl"
            [matAutocomplete]="city"
            placeholder="Kyiv">
-    <mat-autocomplete #city="matAutocomplete">
+    <mat-autocomplete #city="matAutocomplete"
+                      (optionSelected)="selectOption($event)">
       <mat-option *ngFor="let city of cities | async"
                   [value]="city">
         {{ city }}
