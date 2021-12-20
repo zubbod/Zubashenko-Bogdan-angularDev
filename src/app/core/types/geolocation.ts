@@ -11,8 +11,7 @@ export class Geolocation implements LonLat {
 
   constructor(data: LonLat | null) {
     if (data) {
-      this.longitude = data.longitude;
-      this.latitude = data.latitude;
+      Object.assign(this, data);
     } else {
       Object.assign(this, EMPTY_LOCATION);
     }

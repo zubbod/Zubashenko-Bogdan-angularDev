@@ -1,0 +1,11 @@
+:host {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.search-form {
+  &__input {
+    width: 400px;
+  }
+}
