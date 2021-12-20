@@ -1,5 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  OnInit,
+} from '@angular/core';
+import { Observable, of } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import { CityModel } from 'src/app/core/models/city.model';
 import { WeatherModel } from 'src/app/core/models/weather.model';
 import { Geolocation } from 'src/app/core/types/geolocation';
@@ -11,16 +17,19 @@ import { WeatherService } from 'src/app/services/weather.service';
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent implements OnInit {
   public currentWeather: Observable<WeatherModel[]>;
-  public currentCity: CityModel;
+  // public currentCity: CityModel;
+  public currentCity: Observable<CityModel>;
   private lonLat: Geolocation | undefined = undefined;
 
   constructor(
     private geolocationService: GeolocationService,
     private weatherService: WeatherService,
     private geopositionSearchService: GeopositionSearchService,
+    private changeDetector: ChangeDetectorRef,
   ) {}
 
   async ngOnInit(): Promise<void> {
@@ -28,7 +37,7 @@ export class HomeComponent implements OnInit {
   }
 
   public selectCity(city: CityModel) {
-    this.currentCity = city;
+    this.currentCity = of(city);
     this.currentWeather = this.weatherService.getCurrentCityWeather(city.key);
   }
 
@@ -39,14 +48,16 @@ export class HomeComponent implements OnInit {
     } else {
       this.weatherService.getCurrentCityWeather();
     }
+    this.changeDetector.markForCheck();
   }
 
-  private async getCurrentWeatherByLonLat(coords: Geolocation): Promise<void> {
-    this.currentCity = await this.geopositionSearchService
-      .getCity(coords)
-      .toPromise();
-    this.currentWeather = this.weatherService.getCurrentCityWeather(
-      this.currentCity.key,
+  private getCurrentWeatherByLonLat(coords: Geolocation): void {
+    this.currentCity = this.geopositionSearchService.getCity(coords).pipe(
+      tap(res => {
+        this.currentWeather = this.weatherService.getCurrentCityWeather(
+          res.key,
+        );
+      }),
     );
   }
 }

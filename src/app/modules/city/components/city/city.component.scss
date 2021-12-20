@@ -1,0 +1,46 @@
+@use 'theme' as theme;
+
+:host {
+  display: flex;
+  justify-content: space-between;
+  margin: 24px 0;
+  padding: 24px 32px;
+  border-radius: 4px;
+  background-color: map-get(theme.$w-front-accent, 200);
+}
+
+.city {
+  display: flex;
+  flex-grow: 1;
+  flex-basis: 33%;
+
+  &__icon {
+    width: 54px;
+  }
+
+  &-info {
+    margin-left: 24px;
+  }
+}
+
+.weather {
+  display: flex;
+  flex-grow: 1;
+  flex-basis: 33%;
+  flex-flow: column;
+  align-items: center;
+  margin-left: 24px;
+
+  &__text {
+    font-size: 40px;
+    line-height: 1;
+  }
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-grow: 1;
+  flex-basis: 33%;
+}

@@ -1,5 +1,6 @@
 <div class="content">
   <app-search (selectCity)="selectCity($event)"></app-search>
-  <app-current-weather [currentWeather]="currentWeather"
-                       [currentCity]="currentCity"></app-current-weather>
+  <app-city class="city-weather"
+            [weather]="currentWeather"
+            [city]="currentCity"></app-city>
 </div>
