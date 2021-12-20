@@ -1,0 +1,120 @@
+{
+  "Version": 1,
+  "Key": "324195",
+  "Type": "City",
+  "Rank": 75,
+  "LocalizedName": "Dobrovelychkivka",
+  "EnglishName": "Dobrovelychkivka",
+  "PrimaryPostalCode": "",
+  "Region": {
+    "ID": "EUR",
+    "LocalizedName": "Europe",
+    "EnglishName": "Europe"
+  },
+  "Country": {
+    "ID": "UA",
+    "LocalizedName": "Ukraine",
+    "EnglishName": "Ukraine"
+  },
+  "AdministrativeArea": {
+    "ID": "35",
+    "LocalizedName": "Kirovohrad",
+    "EnglishName": "Kirovohrad",
+    "Level": 1,
+    "LocalizedType": "Province",
+    "EnglishType": "Province",
+    "CountryID": "UA"
+  },
+  "TimeZone": {
+    "Code": "EET",
+    "Name": "Europe/Kiev",
+    "GmtOffset": 2,
+    "IsDaylightSaving": false,
+    "NextOffsetChange": "2022-03-27T01:00:00Z"
+  },
+  "GeoPosition": {
+    "Latitude": 48.388,
+    "Longitude": 31.177,
+    "Elevation": {
+      "Metric": {
+        "Value": 195,
+        "Unit": "m",
+        "UnitType": 5
+      },
+      "Imperial": {
+        "Value": 639,
+        "Unit": "ft",
+        "UnitType": 0
+      }
+    }
+  },
+  "IsAlias": false,
+  "SupplementalAdminAreas": [],
+  "DataSets": [
+    "AirQualityCurrentConditions",
+    "AirQualityForecasts",
+    "DailyPollenForecast",
+    "ForecastConfidence"
+  ],
+  "Details": {
+    "Key": "324195",
+    "StationCode": "URDOB",
+    "StationGmtOffset": 2,
+    "BandMap": "EUR",
+    "Climo": "UMAX",
+    "LocalRadar": "",
+    "MediaRegion": null,
+    "Metar": "UKKG",
+    "NXMetro": "",
+    "NXState": "",
+    "Population": 5763,
+    "PrimaryWarningCountyCode": "",
+    "PrimaryWarningZoneCode": "",
+    "Satellite": "EURM",
+    "Synoptic": "33586",
+    "MarineStation": "",
+    "MarineStationGMTOffset": null,
+    "VideoCode": "",
+    "LocationStem": "ua/dobrovelychkivka/324195",
+    "PartnerID": null,
+    "Sources": [
+      {
+        "DataType": "AirQualityCurrentConditions",
+        "Source": "Plume Labs",
+        "SourceId": 63
+      },
+      {
+        "DataType": "AirQualityForecasts",
+        "Source": "Plume Labs",
+        "SourceId": 63
+      },
+      {
+        "DataType": "CurrentConditions",
+        "Source": "AccuWeather",
+        "SourceId": 1
+      },
+      {
+        "DataType": "DailyForecast",
+        "Source": "AccuWeather",
+        "SourceId": 1
+      },
+      {
+        "DataType": "DailyPollenForecast",
+        "Source": "Copernicus Atmosphere Monitoring Service",
+        "SourceId": 78
+      },
+      {
+        "DataType": "ForecastConfidence",
+        "Source": "AccuWeather",
+        "SourceId": 1
+      },
+      {
+        "DataType": "HourlyForecast",
+        "Source": "AccuWeather",
+        "SourceId": 1
+      }
+    ],
+    "CanonicalPostalCode": "",
+    "CanonicalLocationKey": "324195"
+  }
+}
