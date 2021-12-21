@@ -6,12 +6,13 @@ import { WEATHER_API_KEY } from '../core/tokens/weather-api-key';
 import { WEATHER_API_URL } from '../core/tokens/weather-api-url';
 import { ForecastModel } from '../shared/models/forecast.model';
 import { WeatherModel } from '../shared/models/weather.model';
+import { CityKey } from '../shared/types/city-key';
 
 @Injectable({
   providedIn: 'root',
 })
 export class WeatherService {
-  private cityKey = '324505';
+  private cityKey: CityKey = '324505';
 
   constructor(
     private httpClient: HttpClient,
@@ -19,7 +20,7 @@ export class WeatherService {
     @Inject(WEATHER_API_URL) private apiUrl: string,
   ) {}
 
-  public getCurrentCityWeather(cityKey: string = this.cityKey): Observable<WeatherModel[]> {
+  public getCurrentCityWeather(cityKey: CityKey = this.cityKey): Observable<WeatherModel[]> {
     this.cityKey = cityKey;
     return this.httpClient
       .get<WeatherModel[]>(this.getRequestUrl(), {
@@ -31,7 +32,7 @@ export class WeatherService {
       );
   }
 
-  public getWeatherForecast(cityKey: string = this.cityKey): Observable<ForecastModel | null> {
+  public getWeatherForecast(cityKey: CityKey = this.cityKey): Observable<ForecastModel | null> {
     this.cityKey = cityKey;
     return this.httpClient
       .get<ForecastModel>(this.getForecastRequestUrl(), {

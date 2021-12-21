@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { CityModel } from 'src/app/shared/models/city.model';
 import { ForecastModel } from 'src/app/shared/models/forecast.model';
 import { GeolocationModel } from 'src/app/shared/models/geolocation-model';
@@ -8,6 +8,7 @@ import { WeatherModel } from 'src/app/shared/models/weather.model';
 import { GeolocationService } from 'src/app/services/geolocation.service';
 import { GeopositionSearchService } from 'src/app/services/geoposition-search.service';
 import { WeatherService } from 'src/app/services/weather.service';
+import { FavoriteService } from 'src/app/services/favorite.service';
 
 @Component({
   selector: 'app-home',
@@ -16,7 +17,7 @@ import { WeatherService } from 'src/app/services/weather.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent implements OnInit {
-  public currentWeather: Observable<WeatherModel[]>;
+  public currentWeather: Observable<WeatherModel>;
   public currentForecast: Observable<ForecastModel | null>;
   public currentCity: Observable<CityModel | null>;
   private lonLat: GeolocationModel | undefined = undefined;
@@ -25,6 +26,7 @@ export class HomeComponent implements OnInit {
     private geolocationService: GeolocationService,
     private weatherService: WeatherService,
     private geopositionSearchService: GeopositionSearchService,
+    private favoriteService: FavoriteService,
     private changeDetector: ChangeDetectorRef,
   ) {}
 
@@ -33,7 +35,11 @@ export class HomeComponent implements OnInit {
   }
 
   public selectCity(city: CityModel) {
-    this.currentCity = of(city);
+    this.currentCity = of(city).pipe(
+      tap(city => {
+        city.isFavorite = this.favoriteService.isFavorite(city);
+      }),
+    );
     this.getWeatherByCityKey(city.key);
   }
 
@@ -49,14 +55,17 @@ export class HomeComponent implements OnInit {
 
   private getCurrentWeatherByLonLat(coords: GeolocationModel): void {
     this.currentCity = this.geopositionSearchService.getCity(coords).pipe(
-      tap(res => {
-        res && this.getWeatherByCityKey(res.key);
+      tap(city => {
+        if (city) {
+          this.getWeatherByCityKey(city.key);
+          city.isFavorite = this.favoriteService.isFavorite(city);
+        }
       }),
     );
   }
 
   private getWeatherByCityKey(cityKey: string): void {
-    this.currentWeather = this.weatherService.getCurrentCityWeather(cityKey);
+    this.currentWeather = this.weatherService.getCurrentCityWeather(cityKey).pipe(map(res => res[0]));
     this.currentForecast = this.weatherService.getWeatherForecast(cityKey);
   }
 }

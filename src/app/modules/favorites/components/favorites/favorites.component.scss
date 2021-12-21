@@ -1,0 +1,8 @@
+.content {
+  display: flex;
+  flex-direction: row;
+
+  .favorite + .favorite {
+    margin-left: 12px;
+  }
+}

@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import { City } from '../shared/interfaces/city';
 import { CityModel } from '../shared/models/city.model';
 import { WEATHER_API_KEY } from '../core/tokens/weather-api-key';
 import { WEATHER_API_URL } from '../core/tokens/weather-api-url';
@@ -17,9 +16,9 @@ export class CityService {
     @Inject(WEATHER_API_URL) private apiUrl: string,
   ) {}
 
-  public suggestCity(query: string): Observable<City[]> {
+  public suggestCity(query: string): Observable<CityModel[]> {
     return this.httpClient
-      .get<City[]>(this.requestUrl, {
+      .get<CityModel[]>(this.requestUrl, {
         params: { language: 'en-us', q: query, apikey: this.apiKey },
       })
       .pipe(

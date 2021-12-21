@@ -4,7 +4,7 @@ import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, filter, switchMap } from 'rxjs/operators';
 import { CityService } from 'src/app/services/city.service';
-import { City } from 'src/app/shared/interfaces/city';
+import { CityModel } from 'src/app/shared/models/city.model';
 
 @Component({
   selector: 'app-search',
@@ -13,8 +13,8 @@ import { City } from 'src/app/shared/interfaces/city';
 })
 export class SearchComponent {
   public searchControl = new FormControl('');
-  public cities: Observable<City[]>;
-  @Output() public selectCity: EventEmitter<City> = new EventEmitter();
+  public cities: Observable<CityModel[]>;
+  @Output() public selectCity: EventEmitter<CityModel> = new EventEmitter();
 
   private minQueryLength = 2;
 

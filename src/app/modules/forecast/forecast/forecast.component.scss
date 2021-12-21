@@ -1,23 +1,15 @@
-@use 'theme' as theme;
+@use 'base' as base;
 
 :host {
-  display: flex;
-  flex-flow: column nowrap;
-  width: 150px;
-  padding: 12px;
-  border-radius: 4px;
-  background-color: map-get(theme.$w-front-primary, 50);
+  @include base.card;
 }
 
 .date {
-  font-weight: 700;
+  @include base.bold;
 }
 
 .temperature {
-  display: flex;
-  justify-content: center;
-  font-size: 24px;
-  margin: 8px 0;
+  @include base.temperature;
 }
 
 .text:not(:last-of-type) {

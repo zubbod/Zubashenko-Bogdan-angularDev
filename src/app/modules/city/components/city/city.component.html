@@ -8,20 +8,21 @@
       <div class="city-info__item">{{ currentCity.country.localizedName }}</div>
     </div>
   </div>
-</ng-container>
-<ng-container *ngIf="weather | async as currentWeather">
-  <div class="weather">
-    <div class="weather__text">{{ currentWeather[0].temperature.getByType(TemperatureType.Celsius).value }}
-      {{ currentWeather[0].weatherText }}
+
+  <ng-container *ngIf="weather | async as currentWeather">
+    <div class="weather">
+      <div class="weather__text">{{ currentWeather.temperature.getByType(TemperatureType.Celsius).value }}
+        {{ currentWeather.weatherText }}
+      </div>
+      <div class="weather__item">{{ currentWeather.localObservationDateTime | date: 'EEEE, dd MMMM, h:mm a' }}
+      </div>
     </div>
-    <div class="weather__item">{{ currentWeather[0].localObservationDateTime | date: 'EEEE, dd MMMM, h:mm a' }}
+    <div class="actions">
+      <button mat-icon-button
+              (click)="toggleFavorite(currentCity)"
+              color="warn">
+        <mat-icon>{{currentCity.isFavorite ? 'favorite' : 'favorite_border'}}</mat-icon>
+      </button>
     </div>
-  </div>
-  <div class="actions">
-    <button mat-icon-button
-            color="warn">
-      <!-- <mat-icon>favorite</mat-icon> -->
-      <mat-icon>favorite_border</mat-icon>
-    </button>
-  </div>
+  </ng-container>
 </ng-container>

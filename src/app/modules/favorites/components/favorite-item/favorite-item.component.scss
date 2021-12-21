@@ -1,0 +1,24 @@
+@use 'base' as base;
+
+:host {
+  @include base.card;
+  align-items: center;
+  cursor: pointer;
+
+  &:hover {
+    @include base.card-hover;
+  }
+}
+
+.city {
+  @include base.bold;
+  margin-bottom: 8px;
+}
+
+.temperature {
+  @include base.temperature;
+}
+
+.text {
+  font-size: 24px;
+}

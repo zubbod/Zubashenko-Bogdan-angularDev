@@ -1,0 +1,8 @@
+<ng-container *ngIf="weather | async as currentWeather">
+  <div class="city">{{ city.localizedName }}</div>
+  <div class="date">{{ currentWeather.localObservationDateTime | date: 'EEEE, dd MMMM' }}</div>
+  <div class="temperature">
+    {{ currentWeather.temperature.getByType(TemperatureType.Celsius).value }}&deg;
+  </div>
+  <div class="text">{{ currentWeather.weatherText }}</div>
+</ng-container>
