@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, Inject, Input } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { ASSETS_URL } from 'src/app/core/tokens/assets-url.token';
+import { TEMPERATURE_TYPE } from 'src/app/core/tokens/temperature-type';
 import { FavoriteService } from 'src/app/services/favorite.service';
 import { TemperatureType } from 'src/app/shared/enums/temperature-type.enum';
 import { CityModel } from 'src/app/shared/models/city.model';
@@ -22,6 +23,7 @@ export class CityComponent {
 
   constructor(
     @Inject(ASSETS_URL) public assetsUrl: string,
+    @Inject(TEMPERATURE_TYPE) public temperatureType: BehaviorSubject<TemperatureType>,
     private favoriteService: FavoriteService,
   ) {}
 

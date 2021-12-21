@@ -1,7 +1,8 @@
 <div class="date">{{ forecast.date | date: 'EEEE, d' }}</div>
-<div class="temperature">
-  {{ forecast.temperature.minimum.value }}/{{ forecast.temperature.maximum.value }}
-  &nbsp;{{ forecast.temperature.minimum.unit }}&deg;
+<div *ngIf="temperatureType | async as type"
+     class="temperature">
+  {{ forecast.temperature.getUnitByType('minimum', type) }}/{{ forecast.temperature.getUnitByType('maximum', type) }}
+  &nbsp;{{ type }}&deg;
 </div>
 <div class="text">Day: {{ forecast.day.iconPhrase }}</div>
 <div class="text">Night: {{ forecast.night.iconPhrase }}</div>

@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { GeolocationService } from 'src/app/services/geolocation.service';
 import { GeopositionSearchService } from 'src/app/services/geoposition-search.service';
+import { CelsiusFahrenheitModule } from '../celsius-fahrenheit/celsius-fahrenheit.module';
 import { CityModule } from '../city/city.module';
 import { ForecastModule } from '../forecast/forecast.module';
 import { SearchCityModule } from '../search-city/search-city.module';
@@ -18,6 +19,7 @@ import { HomeRoutingModule } from './home-routing.module';
     CityModule,
     ForecastModule,
     SpinnerModule,
+    CelsiusFahrenheitModule,
   ],
   providers: [GeolocationService, GeopositionSearchService],
 })

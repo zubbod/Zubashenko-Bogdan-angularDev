@@ -1,0 +1,7 @@
+<button class="button"
+        mat-stroked-button
+        (click)="tooggleTempType()">
+  {{ currentTemperatyreType }}&deg;
+  <mat-icon>east</mat-icon>
+  {{ currentTemperatyreType === celsius ? fahrenheit : celsius }}&deg;
+</button>

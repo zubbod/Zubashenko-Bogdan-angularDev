@@ -1,6 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, Inject, Input, OnInit } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { TEMPERATURE_TYPE } from 'src/app/core/tokens/temperature-type';
 import { WeatherService } from 'src/app/services/weather.service';
 import { TemperatureType } from 'src/app/shared/enums/temperature-type.enum';
 import { CityModel } from 'src/app/shared/models/city.model';
@@ -16,7 +17,10 @@ export class FavoriteItemComponent implements OnInit {
   public weather: Observable<WeatherModel>;
   public TemperatureType = TemperatureType;
 
-  constructor(private weatherService: WeatherService) {}
+  constructor(
+    private weatherService: WeatherService,
+    @Inject(TEMPERATURE_TYPE) public temperatureType: BehaviorSubject<TemperatureType>,
+  ) {}
 
   public ngOnInit(): void {
     this.weather = this.weatherService

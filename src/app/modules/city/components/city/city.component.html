@@ -10,8 +10,11 @@
   </div>
 
   <ng-container *ngIf="weather | async as currentWeather; else loading">
-    <div class="weather">
-      <div class="weather__text">{{ currentWeather.temperature.getByType(TemperatureType.Celsius).value }}
+    <div class="weather"
+         *ngIf="temperatureType | async as type">
+      <div class="weather__text">
+        {{ currentWeather.temperature.getUnitByType(type).value }}
+        {{ type }}&deg;
         {{ currentWeather.weatherText }}
       </div>
       <div class="weather__item">{{ currentWeather.localObservationDateTime | date: 'EEEE, dd MMMM, h:mm a' }}

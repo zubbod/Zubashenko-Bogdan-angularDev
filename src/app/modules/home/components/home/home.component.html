@@ -1,6 +1,7 @@
 <div class="content">
   <app-search (selectCity)="selectCity($event)"></app-search>
   <ng-container *ngIf="currentCity | async; else loading">
+    <app-celsius-fahrenheit></app-celsius-fahrenheit>
     <app-city class="city-weather"
               [weather]="currentWeather"
               [city]="currentCity"></app-city>

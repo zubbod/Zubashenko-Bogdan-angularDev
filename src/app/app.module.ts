@@ -10,9 +10,11 @@ import { DefaultParamsInterceptor } from './core/interceptors/default-params.int
 import { ErrorsInterceptor } from './core/interceptors/errors.interceptor';
 import { ResponseInterceptor } from './core/interceptors/response.interceptor';
 import { ASSETS_URL } from './core/tokens/assets-url.token';
+import { temperatureTypeFactory, TEMPERATURE_TYPE } from './core/tokens/temperature-type';
 import { WEATHER_API_KEY } from './core/tokens/weather-api-key';
 import { WEATHER_API_URL } from './core/tokens/weather-api-url';
 import { HeaderModule } from './modules/header/header.module';
+import { TemperatureType } from './shared/enums/temperature-type.enum';
 
 @NgModule({
   declarations: [AppComponent],
@@ -51,6 +53,10 @@ import { HeaderModule } from './modules/header/header.module';
       provide: HTTP_INTERCEPTORS,
       useClass: DefaultParamsInterceptor,
       multi: true,
+    },
+    {
+      provide: TEMPERATURE_TYPE,
+      useFactory: temperatureTypeFactory(environment.temperatureType as TemperatureType),
     },
   ],
   bootstrap: [AppComponent],

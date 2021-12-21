@@ -10,7 +10,7 @@ export class TemperatureModel {
     this.imperial = data.imperial;
   }
 
-  public getByType(type: TemperatureType): TemperatureItem {
+  public getUnitByType(type: TemperatureType): TemperatureItem {
     return this.metric.unit === type ? this.metric : this.imperial;
   }
 }
