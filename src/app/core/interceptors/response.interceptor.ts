@@ -7,7 +7,7 @@ import {
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { delay, map } from 'rxjs/operators';
 
 @Injectable()
 export class ResponseInterceptor implements HttpInterceptor {
@@ -24,6 +24,7 @@ export class ResponseInterceptor implements HttpInterceptor {
         }
         return event;
       }),
+      delay(200),
     );
   }
 

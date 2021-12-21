@@ -1,13 +1,17 @@
 <div class="content">
   <app-search (selectCity)="selectCity($event)"></app-search>
-  <ng-container *ngIf="currentCity | async">
+  <ng-container *ngIf="currentCity | async; else loading">
     <app-city class="city-weather"
               [weather]="currentWeather"
               [city]="currentCity"></app-city>
-    <div *ngIf="currentForecast | async as forecast"
+    <div *ngIf="currentForecast | async as forecast; else loading"
          class="forecast">
       <app-forecast *ngFor="let item of forecast.dailyForecasts"
                     [forecast]="item"></app-forecast>
     </div>
   </ng-container>
 </div>
+
+<ng-template #loading>
+  <app-spinner></app-spinner>
+</ng-template>

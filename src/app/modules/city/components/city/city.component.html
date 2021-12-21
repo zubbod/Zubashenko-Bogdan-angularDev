@@ -9,7 +9,7 @@
     </div>
   </div>
 
-  <ng-container *ngIf="weather | async as currentWeather">
+  <ng-container *ngIf="weather | async as currentWeather; else loading">
     <div class="weather">
       <div class="weather__text">{{ currentWeather.temperature.getByType(TemperatureType.Celsius).value }}
         {{ currentWeather.weatherText }}
@@ -26,3 +26,7 @@
     </div>
   </ng-container>
 </ng-container>
+
+<ng-template #loading>
+  <app-spinner color="accent"></app-spinner>
+</ng-template>

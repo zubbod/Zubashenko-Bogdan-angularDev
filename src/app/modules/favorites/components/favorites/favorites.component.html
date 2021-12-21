@@ -1,6 +1,18 @@
 <div class="content">
-  <app-favorite-item class="favorite"
-                     *ngFor="let item of favoriteLocations"
-                     [city]="item"
-                     (click)="showFavorite(item)"></app-favorite-item>
+  <ng-container *ngIf="favoriteLocations.length; else default">
+    <app-favorite-item class="favorite"
+                       *ngFor="let item of favoriteLocations"
+                       [city]="item"
+                       (click)="showFavorite(item)"></app-favorite-item>
+  </ng-container>
 </div>
+
+<ng-template #default>
+  <div class="default">
+    <div class="default__text">There is nothing in the favorites yet...</div>
+    <div class="default__text default__text--small">You can add to favorites any location from the main page</div>
+    <div class="default__action">
+      <app-back-to-home-button></app-back-to-home-button>
+    </div>
+  </div>
+</ng-template>

@@ -1,4 +1,4 @@
-<ng-container *ngIf="weather | async as currentWeather">
+<ng-container *ngIf="weather | async as currentWeather; else loading">
   <div class="city">{{ city.localizedName }}</div>
   <div class="date">{{ currentWeather.localObservationDateTime | date: 'EEEE, dd MMMM' }}</div>
   <div class="temperature">
@@ -6,3 +6,7 @@
   </div>
   <div class="text">{{ currentWeather.weatherText }}</div>
 </ng-container>
+
+<ng-template #loading>
+  <app-spinner></app-spinner>
+</ng-template>
