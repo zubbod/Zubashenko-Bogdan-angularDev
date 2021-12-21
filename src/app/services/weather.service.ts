@@ -41,12 +41,12 @@ export class WeatherService {
   }
 
   private getRequestUrl(): string {
-    // return `${this.apiUrl}currentconditions/v1/${this.cityKey}`;
-    return `/assets/mock/current-condition.json`;
+    return `${this.apiUrl}currentconditions/v1/${this.cityKey}`;
+    // return `/assets/mock/current-condition.json`;
   }
 
   private getForecastRequestUrl(): string {
-    // return `${this.apiUrl}forecasts/v1/daily/5day/${this.cityKey}?metric=true`;
-    return `/assets/mock/daily-forecast.json`;
+    return `${this.apiUrl}forecasts/v1/daily/5day/${this.cityKey}?metric=true`;
+    // return `/assets/mock/daily-forecast.json`;
   }
 }
