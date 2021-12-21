@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ForecastItemModel } from 'src/app/core/models/forecast-item.model';
+import { ForecastItemModel } from 'src/app/shared/models/forecast-item.model';
 
 @Component({
   selector: 'app-forecast',

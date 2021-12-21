@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { CityModel } from 'src/app/core/models/city.model';
-import { ForecastModel } from 'src/app/core/models/forecast.model';
-import { GeolocationModel } from 'src/app/core/models/geolocation-model';
-import { WeatherModel } from 'src/app/core/models/weather.model';
+import { CityModel } from 'src/app/shared/models/city.model';
+import { ForecastModel } from 'src/app/shared/models/forecast.model';
+import { GeolocationModel } from 'src/app/shared/models/geolocation-model';
+import { WeatherModel } from 'src/app/shared/models/weather.model';
 import { GeolocationService } from 'src/app/services/geolocation.service';
 import { GeopositionSearchService } from 'src/app/services/geoposition-search.service';
 import { WeatherService } from 'src/app/services/weather.service';
@@ -17,8 +17,8 @@ import { WeatherService } from 'src/app/services/weather.service';
 })
 export class HomeComponent implements OnInit {
   public currentWeather: Observable<WeatherModel[]>;
-  public currentForecast: Observable<ForecastModel>;
-  public currentCity: Observable<CityModel>;
+  public currentForecast: Observable<ForecastModel | null>;
+  public currentCity: Observable<CityModel | null>;
   private lonLat: GeolocationModel | undefined = undefined;
 
   constructor(
@@ -50,7 +50,7 @@ export class HomeComponent implements OnInit {
   private getCurrentWeatherByLonLat(coords: GeolocationModel): void {
     this.currentCity = this.geopositionSearchService.getCity(coords).pipe(
       tap(res => {
-        this.getWeatherByCityKey(res.key);
+        res && this.getWeatherByCityKey(res.key);
       }),
     );
   }

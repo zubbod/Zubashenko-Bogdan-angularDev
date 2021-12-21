@@ -3,8 +3,8 @@ import { FormControl } from '@angular/forms';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, filter, switchMap } from 'rxjs/operators';
-import { City } from 'src/app/core/interfaces/city';
 import { CityService } from 'src/app/services/city.service';
+import { City } from 'src/app/shared/interfaces/city';
 
 @Component({
   selector: 'app-search',

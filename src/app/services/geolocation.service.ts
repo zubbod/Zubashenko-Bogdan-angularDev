@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
-import { GeolocationModel } from '../core/models/geolocation-model';
+import { GeolocationModel } from '../shared/models/geolocation-model';
 import { MessageService } from './message.service';
 
 @Injectable()
 export class GeolocationService {
-  private notSupportGeolocationMessage =
-    'Geolocation not support on your device';
+  private notSupportGeolocationMessage = 'Geolocation not support on your device';
 
   private retrieveGeolocationErrorMessage = 'Can not retrieve your location';
 
@@ -33,9 +32,7 @@ export class GeolocationService {
     }
   }
 
-  private createLonLatFromGeolocationPosition(
-    position?: GeolocationPosition,
-  ): GeolocationModel {
+  private createLonLatFromGeolocationPosition(position?: GeolocationPosition): GeolocationModel {
     return new GeolocationModel(position ? position.coords : null);
   }
 
