@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, of } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { distinctUntilChanged, map, shareReplay, tap } from 'rxjs/operators';
 import { FavoriteService } from 'src/app/services/favorite.service';
 import { GeolocationService } from 'src/app/services/geolocation.service';
 import { GeopositionSearchService } from 'src/app/services/geoposition-search.service';
@@ -78,13 +78,15 @@ export class HomeComponent implements OnInit {
           city.isFavorite = this.favoriteService.isFavorite(city);
         }
       }),
+      shareReplay(1),
     );
   }
 
   private getWeatherByCityKey(cityKey: string): void {
-    this.currentWeather = this.weatherService
-      .getCurrentCityWeather(cityKey)
-      .pipe(map(res => res[0]));
+    this.currentWeather = this.weatherService.getCurrentCityWeather(cityKey).pipe(
+      map(res => res[0]),
+      shareReplay(1),
+    );
     this.currentForecast = this.weatherService.getWeatherForecast(cityKey);
   }
 }
