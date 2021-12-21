@@ -1,19 +1,11 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { FavoritesRoutingModule } from './favorites-routing.module';
-import { FavoritesComponent } from './components/favorites/favorites.component';
+import { NgModule } from '@angular/core';
 import { FavoriteItemComponent } from './components/favorite-item/favorite-item.component';
-
+import { FavoritesComponent } from './components/favorites/favorites.component';
+import { FavoritesRoutingModule } from './favorites-routing.module';
 
 @NgModule({
-  declarations: [
-    FavoritesComponent,
-    FavoriteItemComponent
-  ],
-  imports: [
-    CommonModule,
-    FavoritesRoutingModule
-  ]
+  declarations: [FavoritesComponent, FavoriteItemComponent],
+  imports: [CommonModule, FavoritesRoutingModule],
 })
-export class FavoritesModule { }
+export class FavoritesModule {}

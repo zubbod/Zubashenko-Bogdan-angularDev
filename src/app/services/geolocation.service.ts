@@ -5,7 +5,6 @@ import { MessageService } from './message.service';
 @Injectable()
 export class GeolocationService {
   private notSupportGeolocationMessage = 'Geolocation not support on your device';
-
   private retrieveGeolocationErrorMessage = 'Can not retrieve your location';
 
   constructor(private messageService: MessageService) {}

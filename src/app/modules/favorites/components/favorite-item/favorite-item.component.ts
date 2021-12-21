@@ -18,7 +18,9 @@ export class FavoriteItemComponent implements OnInit {
 
   constructor(private weatherService: WeatherService) {}
 
-  ngOnInit(): void {
-    this.weather = this.weatherService.getCurrentCityWeather(this.city.key).pipe(map(res => res[0]));
+  public ngOnInit(): void {
+    this.weather = this.weatherService
+      .getCurrentCityWeather(this.city.key)
+      .pipe(map(res => res[0]));
   }
 }

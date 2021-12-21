@@ -19,15 +19,19 @@ export class SearchComponent {
   private minQueryLength = 2;
 
   constructor(private cityService: CityService) {
+    this.subscribeToSearchControl();
+  }
+
+  public selectOption(event: MatAutocompleteSelectedEvent) {
+    this.selectCity.emit(event.option.value);
+  }
+
+  private subscribeToSearchControl(): void {
     this.cities = (this.searchControl.valueChanges as Observable<string>).pipe(
       filter(query => query.length >= this.minQueryLength),
       distinctUntilChanged(),
       debounceTime(200),
       switchMap(query => this.cityService.suggestCity(query)),
     );
-  }
-
-  public selectOption(event: MatAutocompleteSelectedEvent) {
-    this.selectCity.emit(event.option.value);
   }
 }

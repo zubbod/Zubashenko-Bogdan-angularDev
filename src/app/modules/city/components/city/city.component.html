@@ -21,7 +21,7 @@
       <button mat-icon-button
               (click)="toggleFavorite(currentCity)"
               color="warn">
-        <mat-icon>{{currentCity.isFavorite ? 'favorite' : 'favorite_border'}}</mat-icon>
+        <mat-icon>{{ currentCity.isFavorite ? favoriteIcon : favoriteBorderIcon }}</mat-icon>
       </button>
     </div>
   </ng-container>

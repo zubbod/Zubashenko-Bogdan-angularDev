@@ -2,9 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import { CityModel } from '../shared/models/city.model';
 import { WEATHER_API_KEY } from '../core/tokens/weather-api-key';
 import { WEATHER_API_URL } from '../core/tokens/weather-api-url';
+import { CityModel } from '../shared/models/city.model';
 
 @Injectable()
 export class CityService {

@@ -6,29 +6,11 @@ import { CityKey } from '../shared/types/city-key';
   providedIn: 'root',
 })
 export class FavoriteService {
+  public currentFavoriteLocation: CityModel | null = null;
   private favorites: Map<CityKey, CityModel> = new Map();
-
-  constructor() {
-    this.favorites.set('324195', {
-      isFavorite: true,
-      key: '324195',
-      type: 'City',
-      rank: 75,
-      localizedName: 'Dobrovelychkivka',
-      country: {
-        id: 'UA',
-        localizedName: 'Ukraine',
-      },
-      administrativeArea: {
-        id: '35',
-        localizedName: 'Kirovohrad',
-      },
-    });
-  }
 
   public add(location: CityModel): void {
     this.favorites.set(location.key, location);
-    console.log(this.favorites);
   }
 
   public remove(location: CityModel): void {

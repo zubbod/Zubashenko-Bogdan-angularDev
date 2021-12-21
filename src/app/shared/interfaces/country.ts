@@ -1,4 +1,4 @@
 export interface BaseAdministrativeArea {
-  id: string;
-  localizedName: string;
+  readonly id: string;
+  readonly localizedName: string;
 }

@@ -1,14 +1,15 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
+import { FavoriteService } from 'src/app/services/favorite.service';
+import { GeolocationService } from 'src/app/services/geolocation.service';
+import { GeopositionSearchService } from 'src/app/services/geoposition-search.service';
+import { WeatherService } from 'src/app/services/weather.service';
 import { CityModel } from 'src/app/shared/models/city.model';
 import { ForecastModel } from 'src/app/shared/models/forecast.model';
 import { GeolocationModel } from 'src/app/shared/models/geolocation-model';
 import { WeatherModel } from 'src/app/shared/models/weather.model';
-import { GeolocationService } from 'src/app/services/geolocation.service';
-import { GeopositionSearchService } from 'src/app/services/geoposition-search.service';
-import { WeatherService } from 'src/app/services/weather.service';
-import { FavoriteService } from 'src/app/services/favorite.service';
 
 @Component({
   selector: 'app-home',
@@ -28,10 +29,11 @@ export class HomeComponent implements OnInit {
     private geopositionSearchService: GeopositionSearchService,
     private favoriteService: FavoriteService,
     private changeDetector: ChangeDetectorRef,
+    private route: ActivatedRoute,
   ) {}
 
-  async ngOnInit(): Promise<void> {
-    await this.getCurrentWeather();
+  public ngOnInit(): void {
+    this.subscribeToRouterData();
   }
 
   public selectCity(city: CityModel) {
@@ -41,6 +43,21 @@ export class HomeComponent implements OnInit {
       }),
     );
     this.getWeatherByCityKey(city.key);
+  }
+
+  private subscribeToRouterData(): void {
+    this.route.data
+      .pipe(
+        tap(async data => {
+          if (data.currentCity && data.currentCity instanceof CityModel) {
+            this.selectCity(data.currentCity);
+          } else {
+            await this.getCurrentWeather();
+          }
+          this.changeDetector.markForCheck();
+        }),
+      )
+      .toPromise();
   }
 
   private async getCurrentWeather(): Promise<void> {
@@ -65,7 +82,9 @@ export class HomeComponent implements OnInit {
   }
 
   private getWeatherByCityKey(cityKey: string): void {
-    this.currentWeather = this.weatherService.getCurrentCityWeather(cityKey).pipe(map(res => res[0]));
+    this.currentWeather = this.weatherService
+      .getCurrentCityWeather(cityKey)
+      .pipe(map(res => res[0]));
     this.currentForecast = this.weatherService.getWeatherForecast(cityKey);
   }
 }

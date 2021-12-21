@@ -10,13 +10,7 @@ import { HomeRoutingModule } from './home-routing.module';
 
 @NgModule({
   declarations: [HomeComponent],
-  imports: [
-    CommonModule,
-    HomeRoutingModule,
-    SearchCityModule,
-    CityModule,
-    ForecastModule,
-  ],
+  imports: [CommonModule, HomeRoutingModule, SearchCityModule, CityModule, ForecastModule],
   providers: [GeolocationService, GeopositionSearchService],
 })
 export class HomeModule {}

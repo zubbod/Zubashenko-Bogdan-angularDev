@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { FavoriteService } from 'src/app/services/favorite.service';
 import { CityModel } from 'src/app/shared/models/city.model';
 
@@ -10,9 +11,17 @@ import { CityModel } from 'src/app/shared/models/city.model';
 })
 export class FavoritesComponent implements OnInit {
   public favoriteLocations: CityModel[] = [];
-  constructor(private favoriteService: FavoriteService) {
+  private title = 'Favorites';
+  constructor(private favoriteService: FavoriteService, private router: Router) {
     this.favoriteLocations = this.favoriteService.get();
   }
 
-  ngOnInit(): void {}
+  public ngOnInit(): void {
+    this.favoriteService.currentFavoriteLocation = null;
+  }
+
+  public showFavorite(city: CityModel): void {
+    this.favoriteService.currentFavoriteLocation = city;
+    this.router.navigate(['home']);
+  }
 }
