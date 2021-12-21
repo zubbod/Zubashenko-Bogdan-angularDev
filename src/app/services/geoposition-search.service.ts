@@ -21,9 +21,7 @@ export class GeopositionSearchService {
     return this.httpClient
       .get<CityModel>(this.requestUrl, {
         params: {
-          language: 'en-us',
           q: coords.toString(),
-          apikey: this.apiKey,
         },
       })
       .pipe(

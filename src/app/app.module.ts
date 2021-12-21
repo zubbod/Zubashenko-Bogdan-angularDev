@@ -13,6 +13,7 @@ import { WEATHER_API_URL } from './core/tokens/weather-api-url';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ResponseInterceptor } from './core/interceptors/response.interceptor';
 import { ErrorsInterceptor } from './core/interceptors/errors.interceptor';
+import { DefaultParamsInterceptor } from './core/interceptors/default-params.interceptor';
 
 @NgModule({
   declarations: [AppComponent],
@@ -45,6 +46,11 @@ import { ErrorsInterceptor } from './core/interceptors/errors.interceptor';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ErrorsInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: DefaultParamsInterceptor,
       multi: true,
     },
   ],

@@ -19,7 +19,7 @@ export class CityService {
   public suggestCity(query: string): Observable<CityModel[]> {
     return this.httpClient
       .get<CityModel[]>(this.requestUrl, {
-        params: { language: 'en-us', q: query, apikey: this.apiKey },
+        params: { q: query },
       })
       .pipe(
         catchError(() => of([])),

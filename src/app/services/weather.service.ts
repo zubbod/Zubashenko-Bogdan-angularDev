@@ -34,14 +34,10 @@ export class WeatherService {
 
   public getWeatherForecast(cityKey: CityKey = this.cityKey): Observable<ForecastModel | null> {
     this.cityKey = cityKey;
-    return this.httpClient
-      .get<ForecastModel>(this.getForecastRequestUrl(), {
-        params: { language: 'en-us', apikey: this.apiKey },
-      })
-      .pipe(
-        catchError(() => of(null)),
-        map(forecast => forecast && new ForecastModel(forecast)),
-      );
+    return this.httpClient.get<ForecastModel>(this.getForecastRequestUrl()).pipe(
+      catchError(() => of(null)),
+      map(forecast => forecast && new ForecastModel(forecast)),
+    );
   }
 
   private getRequestUrl(): string {
